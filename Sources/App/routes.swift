@@ -8,4 +8,7 @@ func routes(_ app: Application) throws {
     app.get("hello") { req async -> String in
         "Hello, world!"
     }
+
+    let missionController = MissionController()
+    try app.register(collection: missionController)
 }

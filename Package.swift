@@ -8,9 +8,10 @@ let package = Package(
     ],
     dependencies: [
         // 💧 A server-side Swift web framework.
-        .package(url: "https://github.com/vapor/vapor.git", from: "4.89.0"),
-        // 🍃 An expressive, performant, and extensible templating language built for Swift.
-        .package(url: "https://github.com/vapor/leaf.git", from: "4.2.4"),
+        .package(url: "https://github.com/vapor/vapor.git", from: "4.92.5"),
+        .package(url: "https://github.com/vapor/leaf.git", from: "4.3.0"),
+        .package(url: "https://github.com/saroar/ApiRequestSPM.git", from: "0.0.1"),
+//        .package(path: "../VFS_Bot"),
     ],
     targets: [
         .executableTarget(
@@ -18,6 +19,8 @@ let package = Package(
             dependencies: [
                 .product(name: "Leaf", package: "leaf"),
                 .product(name: "Vapor", package: "vapor"),
+                .product(name: "VFS_Bot", package: "ApiRequestSPM"),
+//                "VFS_Bot"
             ]
         ),
         .testTarget(name: "AppTests", dependencies: [

@@ -4,9 +4,23 @@
   <meta charset="utf-8">
 
   <title>#(title)</title>
+      <style>
+        .button-style {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 
 <body>
   <h1>#(title)</h1>
+  <h2>Hello There!</h2>
+
+  <a href="/start" class="button-style">Start</a>
+
 </body>
 </html>
