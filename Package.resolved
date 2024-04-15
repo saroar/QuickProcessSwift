@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/saroar/ApiRequestSPM.git",
       "state" : {
-        "revision" : "cb32abfd9b10d0052dd3d3ccb0b3d5eaf1f01bd8",
-        "version" : "0.0.3"
+        "branch" : "main",
+        "revision" : "1d7f135417f13c0b6994c8dc0af4012abc2d874f"
       }
     },
     {
