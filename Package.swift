@@ -10,7 +10,7 @@ let package = Package(
         // 💧 A server-side Swift web framework.
         .package(url: "https://github.com/vapor/vapor.git", from: "4.92.5"),
         .package(url: "https://github.com/vapor/leaf.git", from: "4.3.0"),
-        .package(url: "https://github.com/saroar/ApiRequestSPM.git", from: "0.0.1"),
+        .package(url: "https://github.com/saroar/ApiRequestSPM.git", from: "0.0.3"),
 //        .package(path: "../VFS_Bot"),
     ],
     targets: [

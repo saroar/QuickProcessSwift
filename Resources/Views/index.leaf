@@ -20,7 +20,7 @@
   <h1>#(title)</h1>
   <h2>Hello There!</h2>
 
-  <a href="/start" class="button-style">Start</a>
+  <a href="missions/start" class="button-style">Start</a>
 
 </body>
 </html>

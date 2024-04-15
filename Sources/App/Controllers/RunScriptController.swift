@@ -1,6 +1,10 @@
 
 import Vapor
 import VFS_Bot
+import Logging
+import NIOHTTP1
+import AsyncHTTPClient
+
 
 struct MissionController: RouteCollection {
     func boot(routes: RoutesBuilder) throws {
@@ -19,7 +23,17 @@ struct MissionController: RouteCollection {
 
         req.logger.info("Async Start executed")
 
-        try await setupAndStart()
+        let httpClient = HTTPClient(eventLoopGroupProvider: .singleton)
+
+        let networkService = NetworkService(httpClient: httpClient)
+        let result = try await BotManager(
+            networkService: networkService,
+            caQuery: .init(countryCode: .USA, missionCode: .PORTUGAL)
+        )
+        .run()
+
+        req.logger.info("End main \(result)")
+
 
         return try await req.view.render("index", ["title": "Hello Vapor!"])
     }
