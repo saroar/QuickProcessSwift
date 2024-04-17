@@ -3,11 +3,14 @@
 # ================================
 FROM swift:5.9-jammy as build
 
-# Install OS updates
+# Install OS updates and necessary libraries including OpenSSL development packages
 RUN export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true \
     && apt-get -q update \
     && apt-get -q dist-upgrade -y \
-    && apt-get install -y libjemalloc-dev
+    && apt-get install -y libssl-dev libjemalloc-dev
+
+# Verify OpenSSL installation paths
+RUN ls -la /usr/include/openssl/ && ls -la /usr/lib/x86_64-linux-gnu/
 
 # Set up a build area
 WORKDIR /build
@@ -24,12 +27,11 @@ RUN swift package resolve --skip-update \
 COPY . .
 
 # Build everything, with optimizations, with static linking, and using jemalloc
-# N.B.: The static version of jemalloc is incompatible with the static Swift runtime.
+# Adjusted paths to match typical OpenSSL installation locations in Ubuntu
 RUN swift build -c release --static-swift-stdlib \
     -Xswiftc -I/usr/include/openssl \
-    -Xlinker -L/usr/lib/ssl \
+    -Xlinker -L/usr/lib/x86_64-linux-gnu \
     -Xlinker -ljemalloc
-
 
 # Switch to the staging area
 WORKDIR /staging
@@ -61,10 +63,7 @@ RUN export DEBIAN_FRONTEND=noninteractive DEBCONF_NONINTERACTIVE_SEEN=true \
       libjemalloc2 \
       ca-certificates \
       tzdata \
-# If your app or its dependencies import FoundationNetworking, also install `libcurl4`.
       libcurl4 \
-# If your app or its dependencies import FoundationXML, also install `libxml2`.
-      # libxml2 \
       libssl-dev \
       clang \
       libz-dev \
