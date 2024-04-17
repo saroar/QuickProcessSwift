@@ -25,9 +25,11 @@ COPY . .
 
 # Build everything, with optimizations, with static linking, and using jemalloc
 # N.B.: The static version of jemalloc is incompatible with the static Swift runtime.
-RUN swift build -c release \
-                --static-swift-stdlib \
-                -Xlinker -ljemalloc
+RUN swift build -c release --static-swift-stdlib \
+    -Xswiftc -I/usr/include/openssl \
+    -Xlinker -L/usr/lib/ssl \
+    -Xlinker -ljemalloc
+
 
 # Switch to the staging area
 WORKDIR /staging
