@@ -19,7 +19,8 @@ x-shared_environment: &shared_environment
   
 services:
   app:
-    image: quick-process-swift:latest
+    image: alifspb/quick_process_swift:latest
+    container_name: quick_process_swift
     build:
       context: .
     environment:
