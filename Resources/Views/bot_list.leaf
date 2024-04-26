@@ -1,0 +1,98 @@
+#extend("base"):
+  #export("content"):
+
+    <div class="p-3 pb-md-4 mx-auto text-center">
+        <h1 class="mb-4">Country Missions</h1>
+
+        <main>
+            <div class="row row-cols-1 row-cols-md-3 mb-3 text-center">
+                #for(mission in missions):
+                    <div class="col">
+                        <div class="card mb-4 rounded-3 shadow-sm">
+                            <div class="card-header py-3">
+                                <h4 class="my-0 fw-normal">#(mission.countryCode) #(mission.countryFlag) ~ #(mission.missionCode) #(mission.missionFlag)</h4>
+                            </div>
+                            <div class="card-body">
+                                <h3 class="card-title pricing-card-title"> BotCurrentStatus: <small class="text-body-secondary fw-light">???</small></h1>
+                                <ul class="list-unstyled mt-3 mb-4">
+                                    <li>
+                                        #if(mission.is_active):
+                                            <p>Active: YES</p>
+                                        #else:
+                                            <p>Active: NO</p>
+                                        #endif
+                                    </li>
+
+                                    <h5><li>CTime: #(mission.currentTime)</li></h5>
+                                    <li>Start Time: #(mission.formattedStartTime)</li>
+                                    <li>End Time: #(mission.formattedEndTime)</li>
+                                    <li>Active Clients: #(mission.active_clients_count)</li>
+
+                                </ul>
+                                <div class="row">
+
+                                    <div class="col-md-6">
+                                        <form class="form-action" method="POST" action="/admin/missions/stop" id="stopForm-#(mission.id)">
+                                            <input type="hidden" name="id" value="#(mission.id)">
+                                            <input type="hidden" name="countryCode" value="#(mission.countryCode)">
+                                            <input type="hidden" name="missionCode" value="#(mission.missionCode)">
+                                        </form>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <form class="form-action" method="POST" action="/admin/missions/start" id="startForm-#(mission.id)">
+
+                                            <input type="hidden" name="id" value="#(mission.id)">
+                                            <input type="hidden" name="countryCode" value="#(mission.countryCode)">
+                                            <input type="hidden" name="missionCode" value="#(mission.missionCode)">
+                                            <div class="mb-3">
+                                                <label for="requestSleepSec" class="form-label">Request Sleep (sec)</label>
+                                                <input type="number" class="form-control" id="requestSleepSec" name="requestSleepSec" value="#(mission.request_sleep_sec)" placeholder="Enter sleep time in seconds">
+
+                                            </div>
+                                            <div class="mb-3">
+                                                <label for="earliestDateRetrySec" class="form-label">Earliest Retry (sec)</label>
+                                                <input type="number" step="0.1" class="form-control" id="earliestDateRetrySec" name="earliestDateRetrySec" value="#(mission.earliest_date_retry_in_sec)" placeholder="Enter retry time in seconds">
+                                            </div>
+                                        </form>
+                                    </div>
+
+
+                                    <!-- Buttons outside the form -->
+                                    <div class="col-md-6">
+                                        <button type="button" class="btn btn-danger btn-lg" data-form-id="stopForm-#(mission.id)"> STOP </button>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <button type="button" class="btn btn-success btn-lg" data-form-id="startForm-#(mission.id)"> START </button>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                #endfor
+            </div>
+        </main>
+
+        <script>
+
+            document.addEventListener('DOMContentLoaded', function() {
+                document.querySelectorAll('button[data-form-id]').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const formId = button.getAttribute('data-form-id');
+                        const form = document.getElementById(formId);
+                        if (form) {
+                            form.submit();
+                        } else {
+                            console.error('No form found with ID:', formId);
+                        }
+                    });
+                });
+            });
+
+        </script>
+    </div>
+
+
+  #endexport
+#endextend

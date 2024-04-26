@@ -1,0 +1,23 @@
+
+#extend("base"):
+#export("content"):
+<main>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 p-3 pb-md-4">
+
+                <div id="user-login" class="container">
+                    <section class="lead text-center">
+                        <p>⬇️</p>
+                        <h1>Welcome, #(currentUser.fullName)</h1>
+                        <p>Please login with your existing account</p>
+                    </section>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+#endexport
+#endextend

@@ -6,7 +6,7 @@
       "location" : "https://github.com/saroar/ApiRequestSPM.git",
       "state" : {
         "branch" : "main",
-        "revision" : "ad0b61f60ef921b2bc18e3553926fb1a65f7c2be"
+        "revision" : "9e65014e26438e70efbe278606edb8a11c0e1332"
       }
     },
     {
@@ -28,6 +28,15 @@
       }
     },
     {
+      "identity" : "bson",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/orlandos-nl/BSON.git",
+      "state" : {
+        "revision" : "57da7f36cabca92166f061ea7a9539a245ee02d7",
+        "version" : "8.1.0"
+      }
+    },
+    {
       "identity" : "console-kit",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/vapor/console-kit.git",
@@ -37,12 +46,39 @@
       }
     },
     {
-      "identity" : "cryptoswift",
+      "identity" : "dnsclient",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/krzyzanowskim/CryptoSwift.git",
+      "location" : "https://github.com/orlandos-nl/DNSClient.git",
       "state" : {
-        "revision" : "c9c3df6ab812de32bae61fc0cd1bf6d45170ebf0",
-        "version" : "1.8.2"
+        "revision" : "6cd650b52e2ddcf4a9ba0d279b58733e47ec19f4",
+        "version" : "2.4.1"
+      }
+    },
+    {
+      "identity" : "ikigajson",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/orlandos-nl/IkigaJSON.git",
+      "state" : {
+        "revision" : "79377692e30b7d96f65e5286b1ad9b160e297ffc",
+        "version" : "2.2.2"
+      }
+    },
+    {
+      "identity" : "jwt",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/vapor/jwt.git",
+      "state" : {
+        "revision" : "d65f32bfd08fae5910d603028be5dec4f35b3482",
+        "version" : "4.2.2"
+      }
+    },
+    {
+      "identity" : "jwt-kit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/vapor/jwt-kit.git",
+      "state" : {
+        "revision" : "c2595b9ad7f512d7f334830b4df1fed6e917946a",
+        "version" : "4.13.4"
       }
     },
     {
@@ -61,6 +97,33 @@
       "state" : {
         "revision" : "f6a08a164f19a64262d1d9828403ce4a0b60d970",
         "version" : "1.10.5"
+      }
+    },
+    {
+      "identity" : "mailgun",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/vapor-community/mailgun.git",
+      "state" : {
+        "revision" : "cb9e4d6d1b760739bf288b07c41bb01bbfe578c5",
+        "version" : "5.0.0"
+      }
+    },
+    {
+      "identity" : "mongokitten",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/orlandos-nl/MongoKitten.git",
+      "state" : {
+        "revision" : "929e88ff318a56c8113c692c47f7aed11cc85b0c",
+        "version" : "7.9.0"
+      }
+    },
+    {
+      "identity" : "mongoqueue",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/orlandos-nl/MongoQueue.git",
+      "state" : {
+        "revision" : "83548920d27c3424ed17ad471f5fca5f15ac9189",
+        "version" : "1.2.0"
       }
     },
     {
@@ -100,6 +163,15 @@
       }
     },
     {
+      "identity" : "swift-case-paths",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/pointfreeco/swift-case-paths",
+      "state" : {
+        "revision" : "8d712376c99fc0267aa0e41fea732babe365270a",
+        "version" : "1.3.3"
+      }
+    },
+    {
       "identity" : "swift-collections",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-collections.git",
@@ -113,8 +185,17 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-crypto.git",
       "state" : {
-        "revision" : "60f13f60c4d093691934dc6cfdf5f508ada1f894",
-        "version" : "2.6.0"
+        "revision" : "f0525da24dc3c6cbb2b6b338b65042bc91cbc4bb",
+        "version" : "3.3.0"
+      }
+    },
+    {
+      "identity" : "swift-distributed-tracing",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-distributed-tracing.git",
+      "state" : {
+        "revision" : "7fbb8b23b77ee548b3d0686b6faf735c1b3c7cb8",
+        "version" : "1.1.0"
       }
     },
     {
@@ -149,8 +230,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-nio.git",
       "state" : {
-        "revision" : "fc63f0cf4e55a4597407a9fc95b16a2bc44b4982",
-        "version" : "2.64.0"
+        "revision" : "359c461e5561d22c6334828806cc25d759ca7aa6",
+        "version" : "2.65.0"
       }
     },
     {
@@ -167,8 +248,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-nio-http2.git",
       "state" : {
-        "revision" : "0904bf0feb5122b7e5c3f15db7df0eabe623dd87",
-        "version" : "1.30.0"
+        "revision" : "c6afe04165c865faaa687b42c32ed76dfcc91076",
+        "version" : "1.31.0"
       }
     },
     {
@@ -199,6 +280,33 @@
       }
     },
     {
+      "identity" : "swift-parsing",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/pointfreeco/swift-parsing",
+      "state" : {
+        "revision" : "a0e7d73f462c1c38c59dc40a3969ac40cea42950",
+        "version" : "0.13.0"
+      }
+    },
+    {
+      "identity" : "swift-service-context",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-service-context.git",
+      "state" : {
+        "revision" : "ce0141c8f123132dbd02fd45fea448018762df1b",
+        "version" : "1.0.0"
+      }
+    },
+    {
+      "identity" : "swift-syntax",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-syntax",
+      "state" : {
+        "revision" : "fa8f95c2d536d6620cc2f504ebe8a6167c9fc2dd",
+        "version" : "510.0.1"
+      }
+    },
+    {
       "identity" : "swift-system",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-system.git",
@@ -208,12 +316,30 @@
       }
     },
     {
+      "identity" : "swift-url-routing",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/pointfreeco/swift-url-routing",
+      "state" : {
+        "revision" : "13f65cec4de950ba30f08d9bc4abcfa41f9479b9",
+        "version" : "0.6.0"
+      }
+    },
+    {
       "identity" : "vapor",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/vapor/vapor.git",
       "state" : {
-        "revision" : "8409c3c296e7f8965df14e906dbcd44eb68f54a9",
-        "version" : "4.92.6"
+        "revision" : "4c80aab7a46860920022e03ced012bca3a71b06b",
+        "version" : "4.94.0"
+      }
+    },
+    {
+      "identity" : "vapor-routing",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/pointfreeco/vapor-routing",
+      "state" : {
+        "revision" : "ae1db2ec96fad88b00173a265313de2c447a9945",
+        "version" : "0.1.3"
       }
     },
     {
@@ -223,6 +349,15 @@
       "state" : {
         "revision" : "4232d34efa49f633ba61afde365d3896fc7f8740",
         "version" : "2.15.0"
+      }
+    },
+    {
+      "identity" : "xctest-dynamic-overlay",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/pointfreeco/xctest-dynamic-overlay",
+      "state" : {
+        "revision" : "6f30bdba373bbd7fbfe241dddd732651f2fbd1e2",
+        "version" : "1.1.2"
       }
     }
   ],

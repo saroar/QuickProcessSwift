@@ -1,0 +1,84 @@
+#extend("base"):
+#export("content"):
+<main>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 p-3 pb-md-4">
+
+                <div id="user-login" class="container">
+                    <section class="lead text-center">
+                        <p>⬇️</p>
+                        <h1>Login</h1>
+                        <p>Please login with your existing account</p>
+                    </section>
+                    <p style="color:red"></p>
+
+                    <div id="otpSection">
+                        <input type="email" id="email" placeholder="Enter your email">
+                        <button onclick="sendOTP()">Send OTP</button>
+                    </div>
+                    <div id="verifySection" style="display:none;">
+                        <input type="text" id="otp" placeholder="Enter OTP">
+                        <button onclick="verifyOTP()">Verify OTP</button>
+                    </div>
+
+                    <script>
+                        let attemptId;
+
+                        function sendOTP() {
+                            const email = document.getElementById('email').value;
+                            fetch('loginp', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify({ email: email })
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                console.log('OTP sent:', data);
+                                attemptId = data.attemptId;
+                                document.getElementById('otpSection').style.display = 'none';
+                                document.getElementById('verifySection').style.display = 'block';
+                            })
+                            .catch((error) => {
+                                console.error('Error:', error);
+                            });
+                        }
+
+                        function verifyOTP() {
+                            const email = document.getElementById('email').value;
+                            const otp = document.getElementById('otp').value;
+                            fetch('verify_otp_email', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify({ email: email, attemptId: attemptId, code: otp })
+                            })
+                            .then(response => {
+                                if (response.ok) {
+                                    return response.json(); // Process JSON response
+                                } else {
+                                    alert("Failed to Verify OTP");
+                                    throw new Error('OTP verification failed');
+                                }
+                            })
+                            .then(data => {
+                                if (data && data.redirect) {
+                                    window.location.href = data.redirect; // Redirect based on the server response
+                                }
+                            })
+                            .catch((error) => {
+                                console.error('Error:', error);
+                            });
+                        }
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+#endexport
+#endextend

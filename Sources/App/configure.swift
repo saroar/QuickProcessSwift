@@ -1,5 +1,6 @@
 import Leaf
 import Vapor
+import IkigaJSON
 
 // configures your application
 public func configure(_ app: Application) async throws {
@@ -7,23 +8,64 @@ public func configure(_ app: Application) async throws {
     app.middleware.use(FileMiddleware(publicDirectory: app.directory.publicDirectory))
     app.views.use(.leaf)
 
+    app.middleware.use(CORSMiddleware())
+
+    // how i can check if request coming from web or ios client
+    app.middleware.use(JWTMiddleware())
+
+    // MARK: JWT
+    app.passwords.use(.bcrypt)
+    // Add HMAC with SHA-256 signer.
+    let environmentNameUppercased = app.environment.name.uppercased()
+    let jwtSecret = Environment.get("JWT_SECRET_" + environmentNameUppercased) ?? String.random(length: 64)
+    app.jwt.signers.use(.hs256(key: jwtSecret))
+
+    // MARK: Setup MongoDB
+    var connectionString: String = ""
+    app.setupDatabaseConnections(&connectionString)
+    try app.initializeMongoDB(connectionString: connectionString)
+
+
+    // MARK: Mailgun
+    app.mailgun.configuration = .environment
+    app.mailgun.defaultDomain = .productoin
+
+    // MARK: MongoQueues
+    app.initializeMongoQueue()
+    try mongoQueue(app)
+
+    AppConfig.env = app.environment
+    app.config = AppConfig.environment
+
+    let decoder = IkigaJSONDecoder()
+    decoder.settings.dateDecodingStrategy = .iso8601
+    ContentConfiguration.global.use(decoder: decoder, for: .json)
+
+    var encoder = IkigaJSONEncoder()
+    encoder.settings.dateEncodingStrategy = .iso8601
+    ContentConfiguration.global.use(encoder: encoder, for: .json)
+
+
+    // MARK: Services
+    app.randomGenerators.use(.random)
+    app.repositories.use(.database)
 
     // register routes
     try routes(app)
+
+    let baseURL = "http://\(app.http.server.configuration.hostname):\(app.http.server.configuration.port)"
+
+    app.router = SiteRouter()
+        .baseURL(baseURL)
+        .eraseToAnyParserPrinter()
+
+    app.mount(app.router, use: siteHandler)
 }
 
-//purdonmiriam1983@outlook.com:268purdon
-//shaniceamano76@outlook.com:vNeigEdm2Kr
-//schickrosina761976@outlook.com:84SYYuNb
-//trudelalease8373@outlook.com:1162Alease
-//mertiedoster332@outlook.com:99c3pd8d
-//zinrivkin7070@outlook.com:i2Nm8aTE
-//magdalenjacklin755@outlook.com:6disCRepancy
-//ryleekoerb1978@outlook.com:q7iwlV921mi
-//muthermerrilee972@outlook.com:DId1LumI03
-//meldak593@outlook.com:i0qWpbIqh
-//steelybrittany744@outlook.com:wIT2H9hOld
-//verdiedaws8@outlook.com:416eotoli416
-//nylzadie948@outlook.com:3948Zadie
-//leonardafredrick@outlook.com:209ruyyyceu
-//sacconetemperance9@outlook.com:SACCONE1971
+func dateFormatter() -> DateFormatter {
+    let formatter = DateFormatter()
+    formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+    formatter.locale = Locale(identifier: "en_US_POSIX")
+    formatter.timeZone = TimeZone(secondsFromGMT: 0)
+    return formatter
+}

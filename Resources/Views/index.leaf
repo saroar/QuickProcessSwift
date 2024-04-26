@@ -1,26 +1,40 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
+#extend("base"):
+  #export("content"):
+    <div class="pricing-header p-3 pb-md-4 mx-auto text-center">
+      <h1 class="display-4 fw-normal text-body-emphasis">Struggling to Secure a Schengen Visa Appointment?</h1>
+      <p class="fs-5 text-body-secondary">Sign up for real-time notifications on Schengen visa appointments, or let our bot handle the booking for you automatically.</p>
+    </div>
 
-  <title>#(title)</title>
-      <style>
-        .button-style {
-            display: inline-block;
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-    </style>
-</head>
 
-<body>
-  <h1>#(title)</h1>
-  <h2>Hello There!</h2>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6 p-3 pb-md-4 text-center">
+                <style>
+                    .custom-margin {
+                        margin-right: 20px; /* You can adjust the value to increase or decrease the space */
+                        margin-bottom: 10px;
+                    }
+                </style>
 
-  <a href="missions/start" class="button-style">Start</a>
 
-</body>
-</html>
+                <div class="row">
+                    <button type="button" class="col btn btn-secondary btn-lg custom-margin"><H6>Submit an application to</H6><H2>UK</H2></button>
+                    <button type="button" class="col btn btn-primary btn-lg custom-margin"><H6>Submit an application to</H6><H2>USA</H2></button>
+                </div>
+
+                <div class="row">
+                    <button type="button" class="col btn btn-success btn-lg custom-margin"><H6>Submit an application to</H6><H2>SINGAPORE</H2></button>
+                    <button type="button" class="col btn btn-warning btn-lg custom-margin"><H6>Submit an application to</H6><H2>UZBIKISTAN</H2></button>
+                </div>
+
+                <div class="row">
+                    <button type="button" class="col btn btn-danger btn-lg custom-margin"><H6>Submit an application to</H6><H2>UAE</H2></button>
+                    <button type="button" class="col btn btn-info btn-lg custom-margin"><H6>Submit an application to</H6><H2>SAUDI</H2></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+  #endexport
+#endextend
